@@ -21,9 +21,8 @@ mongoose.connection
 
 // MODEL
 const BookmarkSchema = new mongoose.Schema({
-  name: String,
-  image: String,
   title: String,
+  url: String
 });
 
 const Bookmark = mongoose.model("Bookmark", BookmarkSchema);
@@ -41,7 +40,7 @@ app.get("/", (req, res) => {
 });
 
 // INDEX
-app.get("/bookmark", async (req, res) => {
+app.get("/bookmarks", async (req, res) => {
   try {
     res.status(200).json(await Bookmark.find({}));
   } catch (error) {
@@ -50,7 +49,7 @@ app.get("/bookmark", async (req, res) => {
 });
 
 // CREATE
-app.post("/bookmark", async (req, res) => {
+app.post("/bookmarks", async (req, res) => {
   try {
     res.status(200).json(await Bookmark.create(req.body));
   } catch (error) {
